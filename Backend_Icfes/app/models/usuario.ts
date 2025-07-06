@@ -1,7 +1,9 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, belongsTo } from '@adonisjs/lucid/orm'
+import { BaseModel, column, belongsTo,hasOne } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import type { HasOne } from '@adonisjs/lucid/types/relations'
 import Administradore from './administradore.ts'
+import Resultado from './resultado.ts'
 
 export default class Usuario extends BaseModel {
   @column({ isPrimary: true, columnName: 'identificacionUsuario' }) 
@@ -38,6 +40,12 @@ export default class Usuario extends BaseModel {
     foreignKey: 'idAdministrador',
   })
   declare administrador: BelongsTo<typeof Administradore>
+
+
+  @hasOne(() => Resultado, {
+  foreignKey: 'identificacionUsuario',
+})
+declare resultado: HasOne<typeof Resultado>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
