@@ -1,11 +1,11 @@
 import { Client } from 'pg'
 
 const Backend_IcfesDB = new Client({
-    port: 5433,
+    port: 5432,
     host: 'localhost',
     password: 'root',
     user: 'postgres',
-    database: 'Backend_IcfesDB'
+    database: 'Backemd_icfesBD'
 })
 Backend_IcfesDB.connect()
 export default Backend_IcfesDB

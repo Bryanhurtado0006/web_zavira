@@ -1,4 +1,4 @@
-import AdministradorService from "../service/AdministradorService.js"
+import AdministradorService from "../service/AdministradorService.ts"
 
 export default class AdministradorController {
   private servicio = new AdministradorService()

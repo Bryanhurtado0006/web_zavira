@@ -1,4 +1,4 @@
-import GradoService from "../service/GradoService.js"
+import GradoService from "../service/GradoService.ts"
 
 export default class GradoController {
   private servicio = new GradoService()
