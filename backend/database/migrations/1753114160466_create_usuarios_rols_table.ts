@@ -5,10 +5,26 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
+      table.increments('id_usuarios_rol') 
 
-      table.timestamp('created_at')
-      table.timestamp('updated_at')
+      table
+        .integer('id_usuario')
+        .unsigned()
+        .references('id')
+        .inTable('usuarios')
+        .onDelete('CASCADE')
+
+      table
+        .integer('id_rol')
+        .unsigned()
+        .references('id_rol') 
+        .inTable('rols')
+        .onDelete('CASCADE')
+
+      table.unique(['id_usuario', 'id_rol'])
+
+      table.timestamp('created_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true })
     })
   }
 
