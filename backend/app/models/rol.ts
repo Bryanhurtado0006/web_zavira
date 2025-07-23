@@ -1,15 +1,14 @@
-// app/Models/Rol.ts
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany, HasMany, manyToMany, ManyToMany } from '@adonisjs/lucid/orm'
-import Usuario from './usuario'
-import UsuariosRol from './usuarios_rol'
+import { BaseModel, column, manyToMany, ManyToMany } from '@adonisjs/lucid/orm'
+import Usuario from './usuario.ts'
+
 
 export default class Rol extends BaseModel {
-  @column({ isPrimary: true })
-  declare id_rol: number // corregido
+  @column({ isPrimary: true,columnName: 'id' })
+  declare id: number
 
-  @column()
-  declare rol: string
+  @column({ columnName: 'nombre' })
+  declare nombre: string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
@@ -17,15 +16,12 @@ export default class Rol extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
 
-  @hasMany(() => UsuariosRol, {
-    foreignKey: 'id_rol',
-  })
-  declare usuariosRols: HasMany<typeof UsuariosRol>
-
   @manyToMany(() => Usuario, {
-    pivotTable: 'usuarios_rols',
+    pivotTable: 'usuarios_roles',
+    localKey: 'id',
     pivotForeignKey: 'id_rol',
-    pivotRelatedForeignKey: 'id_usuario',
+    relatedKey: 'id_usuario',
+    pivotRelatedForeignKey: 'id_usuario'
   })
   declare usuarios: ManyToMany<typeof Usuario>
 }
