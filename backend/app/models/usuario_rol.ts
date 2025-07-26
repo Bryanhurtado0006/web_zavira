@@ -1,18 +1,29 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, column, belongsTo } from '@adonisjs/lucid/orm'
+import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+
+import Usuario from './usuario.js'
+import Rol from './rol.js'
 
 export default class UsuarioRol extends BaseModel {
-  @column({ isPrimary: true,columnName: 'id' })
+  @column({ isPrimary: true })
   declare id: number
 
-  @column({ columnName: 'id_usuario' })
+  @column()
   declare id_usuario: number
 
-  @column({ columnName: 'id_rol' })
-  declare id_rol: number 
+  @column()
+  declare id_rol: number
 
-  @column({ columnName: 'activo' })
-  declare activo: boolean // campo booleano para indicar si el rol está activo o no
+  @belongsTo(() => Usuario, {
+    foreignKey: 'id_usuario',
+  })
+  declare usuario: BelongsTo<typeof Usuario>
+
+  @belongsTo(() => Rol, {
+    foreignKey: 'id_rol',
+  })
+  declare rol: BelongsTo<typeof Rol>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

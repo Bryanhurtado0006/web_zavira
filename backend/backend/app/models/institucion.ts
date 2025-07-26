@@ -5,17 +5,24 @@ export default class Institucion extends BaseModel {
   @column({ isPrimary: true, columnName: 'id_institucion' })
   declare id_institucion: number
 
-  @column()
-  declare nombre: string
 
-  @column()
-  declare nit: string
+  @column({ columnName: 'nombre' })
+  declare nombre: string  
+
+  @column({ columnName: 'nit' })
+  declare nit: string 
 
   @column({ columnName: 'codigo_dane' })
-  declare codigo_dane?: string | null // No obligatorio
+  declare codigo_dane: string
 
-  @column()
+  @column({ columnName: 'direccion' })
   declare direccion: string
+
+  @column({ columnName: 'telefono' })
+  declare telefono?: string | null
+
+  @column({ columnName: 'correo' })
+  declare correo?: string | null
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
