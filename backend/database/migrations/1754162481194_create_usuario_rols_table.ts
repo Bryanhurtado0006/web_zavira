@@ -6,24 +6,24 @@ export default class extends BaseSchema {
   async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      
-      // Llave foránea hacia usuarios
-      table
-        .integer('id_usuario')
-        .unsigned()
-        .references('id_usuario') 
-        .inTable('usuarios')
-        .onDelete('CASCADE')
 
-      // Llave foránea hacia rols
       table
-        .integer('id_rol')
-        .unsigned()
-        .references('id')
-        .inTable('rols')
-        .onDelete('CASCADE')
+  .integer('id_usuario')
+  .unsigned()
+  .references('id_usuario')
+  .inTable('usuarios')
+  .onDelete('CASCADE')
 
-  
+table
+  .integer('id_rol')
+  .unsigned()
+  .references('id')
+  .inTable('rols')
+  .onDelete('CASCADE')
+  table.boolean('activo').defaultTo(true) //campo boleano para indicar si el rol está activo o no
+
+table.unique(['id_usuario', 'id_rol'])
+
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })

@@ -1,7 +1,7 @@
 import { Client } from 'pg'
 
 const Zaviradb = new Client({
-    port: 5433,
+    port: 5432,
     host: 'localhost',
     password: 'root',
     user: 'postgres',
