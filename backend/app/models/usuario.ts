@@ -20,9 +20,9 @@ export default class Usuario extends BaseModel {
   @column({ columnName: 'contrasena' })
   declare contrasena: string
 
- /* @column({ columnName: 'id_institucion' })
+ @column({ columnName: 'id_institucion' })
 declare id_institucion: number
-*/
+
 
 
 
@@ -49,8 +49,8 @@ declare id_institucion: number
   declare roles:ManyToMany<typeof Rol>
 
 
- /* @belongsTo(() => Institucion, {
+ @belongsTo(() => Institucion, {
     foreignKey: 'id_institucion',
   })
-  declare institucion: BelongsTo<typeof Institucion>*/
+  declare institucion: BelongsTo<typeof Institucion>
 }

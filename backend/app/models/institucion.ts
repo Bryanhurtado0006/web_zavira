@@ -7,10 +7,10 @@ export default class Institucion extends BaseModel {
 
 
   @column({ columnName: 'nombre' })
-  declare nombre: string  
+  declare nombre: string
 
   @column({ columnName: 'nit' })
-  declare nit: string 
+  declare nit: string
 
   @column({ columnName: 'codigo_dane' })
   declare codigo_dane: string
@@ -19,10 +19,13 @@ export default class Institucion extends BaseModel {
   declare direccion: string
 
   @column({ columnName: 'telefono' })
-  declare telefono?: string | null
+  declare telefono?: string
 
   @column({ columnName: 'correo' })
-  declare correo?: string | null
+  declare correo?: string
+
+  @column({ columnName: 'contrasena' })
+  declare contrasena: string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
