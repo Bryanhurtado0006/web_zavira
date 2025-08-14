@@ -22,8 +22,6 @@ export default class Estudiante extends BaseModel {
   @column({columnName:'fecha_nacimiento'})
   declare fecha_nacimiento: Date
 
-
-
  
    @column({columnName:'id_usuario'})
   declare id_usuario: number

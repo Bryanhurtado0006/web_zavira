@@ -1,34 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
+// Rutas públicas
+import LoginAdm from '../src/assets/LoginAdm'
+import RegistroAdm from '../src/assets/RegistroAdm'
+import RestContra from '../src/assets/RestContra'
+
+// Dashboard principal
+import Dashboard from '../src/assets/Dashboard'
+
+// Componentes internos del dashboard (usando <Outlet/> en Dashboard)
+import Inicio from '../src/assets/Inicio'
+import Perfil from '../src/assets/Perfil'
+import Estudiantes from '../src/assets/Estudiantes'
+import Seguimiento from '../src/assets/Seguimiento'
+import Notificaciones from '../src/assets/Notificaciones'
+import Configuracion from '../src/assets/Configuracion'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Router>
+      <Routes>
+        {/* Rutas públicas */}
+        <Route path="/" element={<LoginAdm />} />
+        <Route path="/registro" element={<RegistroAdm />} />
+        <Route path="/password" element={<RestContra />} />
+
+        {/* Ruta protegida del dashboard con rutas hijas */}
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route index element={<Inicio />} />
+          <Route path="perfil" element={<Perfil />} />
+          <Route path="estudiantes" element={<Estudiantes />} />
+          <Route path="seguimiento" element={<Seguimiento />} />
+          <Route path="notificaciones" element={<Notificaciones />} />
+          <Route path="configuracion" element={<Configuracion />} />
+        </Route>
+      </Routes>
+    </Router>
   )
 }
 
